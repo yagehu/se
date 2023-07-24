@@ -1,5 +1,7 @@
 /bazel-*
 
+rust-project.json
+
 .terraform
 terraform.tfstate
 terraform.tfstate.*
