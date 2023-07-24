@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Generate rust-project.json",
+            "command": "make",
+            "args": ["rust-analyzer"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": [],
+            "presentation": {
+                "reveal": "never",
+                "panel": "dedicated"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "Repin/update dependencies",
+            "command": "make",
+            "args": ["repin"],
+            "options": {
+                "cwd": "${workspaceFolder}",
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Stop rust-analyzer",
+            "command": "${command:rust-analyzer.stopServer}"
+        },
+        {
+            "label": "Start rust-analyzer",
+            "command": "${command:rust-analyzer.startServer}"
+        },
+        {
+            "label": "Repin/update dependencies & generate rust-project.json & restart rust-analyzer",
+            "problemMatcher": [],
+            "dependsOn": [
+                "Repin/update dependencies",
+                "Generate rust-project.json",
+                "Stop rust-analyzer",
+                "Start rust-analyzer"
+            ],
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "Generate rust-project.json & restart rust-analyzer",
+            "problemMatcher": [],
+            "dependsOn": [
+                "Generate rust-project.json",
+                "Stop rust-analyzer",
+                "Start rust-analyzer"
+            ],
+            "dependsOrder": "sequence"
+        }
+    ]
+}

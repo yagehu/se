@@ -1,0 +1,11 @@
+load("@rules_rust//rust:defs.bzl", "rust_library")
+
+rust_library(
+    name = "config",
+    srcs = glob(["src/**/*.rs"]),
+    visibility = ["//src/piston:__subpackages__"],
+    deps = [
+        "//src/cfg",
+        "@crates//:serde",
+    ],
+)

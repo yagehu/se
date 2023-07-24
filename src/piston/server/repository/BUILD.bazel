@@ -1,0 +1,32 @@
+load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test_suite")
+
+rust_library(
+    name = "repository",
+    srcs = glob(["src/**/*.rs"]),
+    proc_macro_deps = [
+        "@crates//:async-trait",
+    ],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//src/piston/server/config",
+        "//src/piston/server/model",
+        "@crates//:sqlx",
+        "@crates//:time",
+        "@crates//:uuid",
+    ],
+)
+
+rust_test_suite(
+    name = "integration",
+    srcs = glob(["tests/**"]),
+    data = ["//config"],
+    deps = [
+        ":repository",
+        "//src/cfg",
+        "//src/piston/server/config",
+        "//src/piston/server/model",
+        "@crates//:time",
+        "@crates//:tokio",
+        "@crates//:uuid",
+    ],
+)

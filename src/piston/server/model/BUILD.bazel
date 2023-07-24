@@ -1,0 +1,11 @@
+load("@rules_rust//rust:defs.bzl", "rust_library")
+
+rust_library(
+    name = "model",
+    srcs = glob(["src/**/*.rs"]),
+    visibility = ["//src/piston/server:__subpackages__"],
+    deps = [
+        "@crates//:sqlx",
+        "@crates//:uuid",
+    ],
+)

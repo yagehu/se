@@ -1,0 +1,10 @@
+load("@rules_rust//rust:defs.bzl", "rust_library")
+
+rust_library(
+    name = "routes",
+    srcs = glob(["src/**/*.rs"]),
+    deps = [
+        "//src/piston/server",
+        "@crates//:axum",
+    ],
+)
